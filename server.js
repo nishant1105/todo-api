@@ -3,21 +3,8 @@ var bodyParser = require('body-parser');
 var _ = require('underscore');
 var app = express();
 var PORT = process.env.PORT || 3000;
-
-var todos = [{
-	id: 1,
-	description: 'Grocery shopping',
-	completed: false
-}, {
-	id: 2,
-	decription: 'See movie',
-	completed: false
-}, {
-	id: 3, 
-	description: 'Cook dinner',
-	completed: true
-}];
-
+var todoNextId = 1;
+var todos = [];
 app.use(bodyParser.json());
 app.get('/', function (req, res) {
 	res.send('Todo API Root');
@@ -34,6 +21,13 @@ app.get('/todos', function (req, res) {
 		queryParams.completed === 'false') {
 		filteredTodos = _.where(filteredTodos, {completed: false});
 	}
+
+	if (queryParams.hasOwnProperty('q') &&
+		queryParams.q.length > 0) {
+		filteredTodos = _.filter(filteredTodos, function (todo) {
+			return todo.description.indexOf(queryParams.q) > -1;
+		});
+	}
 	res.json(filteredTodos);
 });
 
@@ -48,7 +42,6 @@ app.get('/todos/:id', function (req, res) {
 	
 });
 
-var todoNextId = 1;
 app.post('/todos', function (req, res) {
 	var body = _.pick(req.body, 'description', 'completed');
 
