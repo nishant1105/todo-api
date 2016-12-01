@@ -31,30 +31,4 @@ sequelize.sync({/*force: true*/}).then(function () {
 			console.log('Todo not found');
 		}
 	});
-	/*TODO.create({
-		description: 'Walk the dog'
-	}).then(function (todo) {
-		return TODO.create({
-			description: 'Clean office'
-		});
-	}).then(function() {
-		//return TODO.findById(1)
-		return TODO.findAll({
-			where: {
-				description: {
-					$like: '%dog%'
-				}
-			}
-		});
-	}).then(function(todos) {
-		if (todos) {
-			todos.forEach(function (todo) {
-				console.log(todo.toJSON());
-			});
-		} else {
-			console.log('No TODO found');
-		}
-	}).catch(function(e) {
-		console.log(e);
-	});*/
 });
