@@ -47,22 +47,4 @@ sequelize.sync({
 			});
 		});
 	});
-	/*user.create({
-		email: 'nishant@examlpe.com'
-	}).then(function () {
-		return TODO.create({
-			description: 'Clean Yard'
-		});
-	}).then(function (todo) {
-		user.findById(1).then(function (user) {
-			user.addTodo(todo);
-		});
-	});
-	/*TODO.findById(1).then(function (todo) {
-		if(todo) {
-			console.log(todo.toJSON());
-		} else {
-			console.log('Todo not found');
-		}
-	});*/
 });
